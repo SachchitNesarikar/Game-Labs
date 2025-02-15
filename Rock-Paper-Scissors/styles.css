@@ -1,0 +1,142 @@
+body {
+    background-color: #121212;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin: 2rem 0;
+  }
+  
+  .choices {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .choice {
+    width: 80px;
+    height: 80px;
+    background-color: #333;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+  .choice:hover {
+    background-color: #444;
+    transform: scale(1.1);
+  }
+  
+  .choice#rock::before {
+    content: "✊";
+  }
+  
+  .choice#paper::before {
+    content: "🤚";
+  }
+  
+  .choice#scissors::before {
+    content: "✌️";
+  }
+  
+  .score-board {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .score {
+    font-size: 1.5rem;
+  }
+  
+  #msg {
+    color: #ff00ff;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  #reset, #new {
+    padding: 1rem;
+    font-size: 1.25rem;
+    background-color: #1a1a1a;
+    color: #fff;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 2rem rgba(255, 0, 255, 0.6);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #reset:hover, #new:hover {
+    background-color: #333;
+    transform: scale(1.1);
+    box-shadow: 0 0 2.5rem rgba(255, 0, 255, 0.9);
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .choice {
+      width: 60px;
+      height: 60px;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    .score {
+      font-size: 1.25rem;
+    }
+  
+    #msg {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .choice {
+      width: 50px;
+      height: 50px;
+    }
+  
+    h1 {
+      font-size: 1.8rem;
+    }
+  
+    .score {
+      font-size: 1rem;
+    }
+  
+    #msg {
+      font-size: 1rem;
+    }
+    
+    #reset, #new {
+        padding: 1rem;
+        font-size: 1.25rem;
+        background-color: #1a1a1a;
+        color: #fff;
+        border-radius: 1rem;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 0 2rem rgba(255, 0, 255, 0.6);
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+ 
+    #reset:hover, #new:hover {
+        background-color: #333;
+        transform: scale(1.1);
+        box-shadow: 0 0 2.5rem rgba(255, 0, 255, 0.9);
+    }
+  }
+
