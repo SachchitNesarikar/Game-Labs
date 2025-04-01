@@ -1,0 +1,201 @@
+@import url('https://fonts.cdnfonts.com/css/audiowide');
+section {
+    font-family:'Audiowide', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    width: 100%;
+    margin: 0;
+    background: linear-gradient(to right, #ffffff, #000);
+    
+}
+body{
+    height: 100vh;
+    width: auto;
+    background: linear-gradient(to right, #ffffff, #000);
+}
+footer{
+    padding: 5px;
+    background: linear-gradient(to right, #000,#ffffff );
+    width: 100%;
+    color: black;
+    text-align: center;
+}
+header {
+    background: linear-gradient(to right, #000,#ffffff );
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+
+header h1{
+    font-family:'Audiowide', sans-serif;
+}
+
+  
+  .product-name h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+  }
+.container {
+    
+    display: flex;
+    gap: 50px; 
+    perspective: 1000px; 
+}
+
+
+.card, .card2 {
+    width: 500px;
+    height: 550px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s; 
+}
+
+.card:hover, .card2:hover {
+    transform: rotateY(180deg); 
+}
+
+.card-front, .card-back, .card2-front, .card2-back {
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    backface-visibility: hidden; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden; 
+}
+
+
+.card-front, .card2-front {
+    background: white;
+}
+
+.card-front img, .card2-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 10px;
+}
+
+
+.card-back { background: rgb(0, 0, 0) ;
+    color: white;
+    transform: rotateY(180deg); 
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+.card2-back {
+    background:white;
+    color: rgb(0, 0, 0);
+    transform: rotateY(180deg); 
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.card-back h2, .card2-back h2 {
+    margin: 10px 0;
+    font-size: 1.5em;
+}
+
+.card-back p, .card2-back p {
+    font-size: 1em;
+    line-height: 1.5;
+}
+.card h2{
+    color: aliceblue;
+}
+.card-back{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.card2-back{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: rgb(0, 0, 0);
+    
+}
+.card2 h2{
+    color: rgb(0, 0, 0);
+}
+.card-back button, .card2-back button {
+    background-color: #002b4f; 
+  color: #FFFFFF; 
+  border: none;
+  padding: 12px 24px;
+@import url('https://fonts.cdnfonts.com/css/audiowide');
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+
+
+.card-back button:hover , .card2-back button:hover  {
+    background: linear-gradient(45deg, #0EDA83, #3E92CC); 
+    box-shadow: 0px 4px 15px rgba(0, 255, 0, 0.4);
+  
+}
+#imp{
+    text-align: left;
+  
+    background: linear-gradient(to right, #002b4f,#ffffff );
+    padding: 5px;
+}
+
+@media (max-width: 768px) { 
+    .container {
+        flex-direction: row; 
+        gap: 30px; 
+    }
+
+    .card, .card2 {
+        width: 300px; 
+        height: 400px; 
+    }
+}
+@media (max-width: 1024px) {
+    
+}
+
+
+
+@media (max-width: 480px) {
+    body{
+        height: 100vh;
+    }
+    .container {
+        flex-direction: row; 
+        gap: 15px; 
+        height: 50vh;
+        height: 30vh;
+    }
+    footer{
+        height: 8vh;
+    }
+
+    .card, .card2 {
+        width: 150px; 
+        height: 200px; 
+
+    }
+
+}

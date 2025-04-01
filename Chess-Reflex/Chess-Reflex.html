@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Reaction Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: white;
+            text-align: center;
+        }
+        #start-menu, #game-over-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #game-container {
+            display: none;
+        }
+        #chessboard {
+            display: grid;
+            grid-template-columns: repeat(8, 50px);
+            grid-template-rows: repeat(8, 50px);
+            gap: 2px;
+            margin: auto;
+            width: 416px;
+            border: 5px solid white;
+        }
+        .square {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .dark { background-color: #769656; }
+        .light { background-color: #eeeed2; }
+        .shake { animation: shake 0.2s ease-in-out; }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #target-position {
+            font-size: 24px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .toggle-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-label {
+            margin-left: 8px;
+            font-size: 14px;
+            color: white;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(14px);
+        }
+
+        .dark-mode {
+            background-color: #1e1e1e;
+            color: white;
+        }
+
+        .light-mode {
+            background-color: #ffffff;
+            color: black;
+        }
+
+        #restart-btn-container {
+            position: relative;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="start-menu">
+        <h1>Chess Reaction Game</h1>
+        <button id="start-btn">Start Game</button>
+    </div>
+    
+    <div id="game-container">
+        <div class="toggle-container">
+            <label class="switch">
+                <input type="checkbox" id="theme-switch">
+                <span class="slider"></span>
+            </label>
+            <span class="toggle-label">Dark Mode</span>
+        </div>        
+
+        <h2 id="score">Score: 0</h2> 
+
+        <h2 id="high-score">High Score: 0</h2
+            >
+        <h2 id="timer">Time: 60s</h2> 
+
+        <h2 id="target-position">Target: --</h2> 
+         
+        <div id="chessboard"></div> 
+         
+        <div id="restart-btn-container"> 
+        
+            <button id="restart-btn">Restart</button>
+            
+        </div>
+    </div>
+    
+    <div id="game-over-screen" style="display: none;">
+
+        <h1>Game Over</h1> 
+        
+        <h2 id="final-score"></h2>
+         
+        <h2 id="final-high-score"></h2> 
+
+        
+    </div>
+    
+    <script>
+        let score = 0;
+        let highScore = localStorage.getItem("highScore") || 0;
+        let timeLeft = 60;
+        let gameInterval;
+        let targetPosition = "";
+        let isDarkTheme = true;
+        
+        const board = document.getElementById("chessboard");
+        const scoreDisplay = document.getElementById("score");
+        const highScoreDisplay = document.getElementById("high-score");
+        const timerDisplay = document.getElementById("timer");
+        const targetDisplay = document.getElementById("target-position");
+        const startMenu = document.getElementById("start-menu");
+        const gameContainer = document.getElementById("game-container");
+        const gameOverScreen = document.getElementById("game-over-screen");
+        const finalScoreDisplay = document.getElementById("final-score");
+        const finalHighScoreDisplay = document.getElementById("final-high-score");
+        const restartBtn = document.getElementById("restart-btn");
+        const themeToggle = document.getElementById("theme-toggle");
+
+        function createChessboard() {
+            const files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+            for (let r = 8; r >= 1; r--) {
+                for (let f = 0; f < 8; f++) {
+                    const square = document.createElement("div");
+                    square.id = files[f] + r;
+                    square.classList.add("square", (r + f) % 2 === 0 ? "light" : "dark");
+                    board.appendChild(square);
+                }
+            }
+        }
+        createChessboard();
+        
+        function startGame() {
+            startMenu.style.display = "none";
+            gameOverScreen.style.display = "none";
+            gameContainer.style.display = "block";
+            score = 0;
+            timeLeft = 60;
+            updateScore();
+            updateTimer();
+            setRandomTarget();
+            gameInterval = setInterval(countdown, 1000);
+        }
+
+        function countdown() {
+            if (timeLeft <= 0) {
+                clearInterval(gameInterval);
+                endGame();
+            } else {
+                timeLeft--;
+                updateTimer();
+            }
+        }
+
+        function updateScore() {
+            scoreDisplay.innerText = `Score: ${score}`;
+            highScoreDisplay.innerText = `High Score: ${highScore}`;
+        }
+
+        function updateTimer() {
+            timerDisplay.innerText = `Time: ${timeLeft}s`;
+        }
+
+        function setRandomTarget() {
+            const squares = document.querySelectorAll(".square");
+            const randomSquare = squares[Math.floor(Math.random() * squares.length)];
+            targetPosition = randomSquare.id;
+            targetDisplay.innerText = `Target: ${targetPosition}`;
+        }
+
+        function handleSquareClick(event) {
+            if (event.target.id === targetPosition) {
+                score++;
+                if (score > highScore) {
+                    highScore = score;
+                    localStorage.setItem("highScore", highScore);
+                }
+                updateScore();
+                setRandomTarget();
+            } else {
+                board.classList.add("shake");
+                setTimeout(() => board.classList.remove("shake"), 200);
+            }
+        }
+
+        function endGame() {
+            gameContainer.style.display = "none";
+            gameOverScreen.style.display = "block";
+            finalScoreDisplay.innerText = `Your Score: ${score}`;
+            finalHighScoreDisplay.innerText = `High Score: ${highScore}`;
+        }
+
+        const themeSwitch = document.getElementById("theme-switch");
+
+        themeSwitch.addEventListener("change", () => {
+            if (themeSwitch.checked) {
+                document.body.classList.add("dark-mode");
+                document.body.classList.remove("light-mode");
+                localStorage.setItem("theme", "dark");
+            } else {
+                document.body.classList.add("light-mode");
+                document.body.classList.remove("dark-mode");
+                localStorage.setItem("theme", "light");
+            }
+        });
+
+        // Apply saved theme on page load
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+            themeSwitch.checked = true;
+        } else {
+            document.body.classList.add("light-mode");
+            themeSwitch.checked = false;
+        }
+
+        restartBtn.addEventListener("click", () => {
+            gameOverScreen.style.display = "none";
+            startMenu.style.display = "block";
+        });
+
+        board.addEventListener("click", handleSquareClick);
+        document.getElementById("start-btn").addEventListener("click", startGame);
+        updateScore();
+    </script>
+</body>
+</html>
