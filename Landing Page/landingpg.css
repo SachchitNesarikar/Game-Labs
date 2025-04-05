@@ -1,201 +1,118 @@
-@import url('https://fonts.cdnfonts.com/css/audiowide');
-section {
-    font-family:'Audiowide', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 95vh;
-    width: 100%;
+* {
     margin: 0;
-    background: linear-gradient(to right, #ffffff, #000);
-    
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
 }
-body{
-    height: 100vh;
-    width: auto;
-    background: linear-gradient(to right, #ffffff, #000);
+body {
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #0f0f0f);
+    color: #fff;
+    padding: 20px;
 }
-footer{
-    padding: 5px;
-    background: linear-gradient(to right, #000,#ffffff );
-    width: 100%;
-    color: black;
-    text-align: center;
-}
-header {
-    background: linear-gradient(to right, #000,#ffffff );
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-  }
-
-
-header h1{
-    font-family:'Audiowide', sans-serif;
-}
-
-  
-  .product-name h1 {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
-  }
 .container {
-    
-    display: flex;
-    gap: 50px; 
-    perspective: 1000px; 
+    max-width: 1200px;
+    margin: auto;
 }
-
-
-.card, .card2 {
-    width: 500px;
-    height: 550px;
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+.featured-box {
     position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.6s; 
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 30px;
 }
-
-.card:hover, .card2:hover {
-    transform: rotateY(180deg); 
+.featured-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
 }
-
-.card-front, .card-back, .card2-front, .card2-back {
+.featured-text {
     position: absolute;
-    width: 100%;
-    height: 90%;
-    backface-visibility: hidden; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden; 
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 80%;
 }
-
-
-.card-front, .card2-front {
-    background: white;
+.featured-text h3 {
+    font-size: 24px;
+    margin-bottom: 5px;
 }
-
-.card-front img, .card2-front img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    border-radius: 10px;
+.featured-text p {
+    font-size: 16px;
+    color: #ddd;
 }
-
-
-.card-back { background: rgb(0, 0, 0) ;
-    color: white;
-    transform: rotateY(180deg); 
-    text-align: center;
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+.grid-item {
+    background-color: #1E1E1E;
     padding: 20px;
-    border-radius: 10px;
-}
-.card2-back {
-    background:white;
-    color: rgb(0, 0, 0);
-    transform: rotateY(180deg); 
+    border-radius: 12px;
     text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.card-back h2, .card2-back h2 {
-    margin: 10px 0;
-    font-size: 1.5em;
-}
-
-.card-back p, .card2-back p {
-    font-size: 1em;
-    line-height: 1.5;
-}
-.card h2{
-    color: aliceblue;
-}
-.card-back{
+    transition: transform 0.3s ease;
+    height: auto; 
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-}
-.card2-back{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: rgb(0, 0, 0);
-    
-}
-.card2 h2{
-    color: rgb(0, 0, 0);
-}
-.card-back button, .card2-back button {
-    background-color: #002b4f; 
-  color: #FFFFFF; 
-  border: none;
-  padding: 12px 24px;
-@import url('https://fonts.cdnfonts.com/css/audiowide');
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-
+    justify-content: flex-start;
 }
 
 
-
-.card-back button:hover , .card2-back button:hover  {
-    background: linear-gradient(45deg, #0EDA83, #3E92CC); 
-    box-shadow: 0px 4px 15px rgba(0, 255, 0, 0.4);
-  
+.grid-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
-#imp{
-    text-align: left;
-  
-    background: linear-gradient(to right, #002b4f,#ffffff );
-    padding: 5px;
+.genre-image {
+    width: 100%;
+    height: auto; 
+    object-fit: contain; 
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background-color: #000; 
+    transition: transform 0.4s ease;
 }
+.grid-item:hover .genre-image {
+    transform: scale(1.03);
+}
+.grid-item h3 {
+    font-size: 1.3em;
+    margin: 5px 0;
+}
+.grid-item p {
+    font-size: 0.95em;
+    color: #ccc;
+}
+.survival { border-left: 5px solid #FF5733; }
+.arcade { border-left: 5px solid #FFD700; }
+.strategy { border-left: 5px solid #4CAF50; }
+.multiplayer { border-left: 5px solid #1E90FF; }
 
-@media (max-width: 768px) { 
-    .container {
-        flex-direction: row; 
-        gap: 30px; 
+
+@media (max-width: 768px) {
+    .featured-text h3 {
+        font-size: 20px;
     }
 
-    .card, .card2 {
-        width: 300px; 
-        height: 400px; 
-    }
-}
-@media (max-width: 1024px) {
-    
-}
-
-
-
-@media (max-width: 480px) {
-    body{
-        height: 100vh;
-    }
-    .container {
-        flex-direction: row; 
-        gap: 15px; 
-        height: 50vh;
-        height: 30vh;
-    }
-    footer{
-        height: 8vh;
+    .featured-text p {
+        font-size: 14px;
     }
 
-    .card, .card2 {
-        width: 150px; 
-        height: 200px; 
-
+    .grid-item h3 {
+        font-size: 18px;
     }
 
+    .grid-item p {
+        font-size: 14px;
+    }
+
+    .genre-image {
+        height: auto;
+    }
 }
