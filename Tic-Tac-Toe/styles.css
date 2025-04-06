@@ -44,7 +44,7 @@ body {
 }
 
 #reset,
-#new {
+#new, #singlePlayer, #multiPlayer{
   padding: 1rem;
   font-size: 1.25rem;
   background-color: #1a1a1a;
@@ -54,13 +54,23 @@ body {
   cursor: pointer;
   box-shadow: 0 0 2rem rgba(255, 0, 255, 0.6);
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  width:150px
 }
 
 #reset:hover,
-#new:hover {
+#new:hover, #singlePlayer:hover,
+#multiPlayer:hover {
   background-color: #333;
   transform: scale(1.1);
   box-shadow: 0 0 2.5rem rgba(255, 0, 255, 0.9);
+}
+
+#singlePlayer{
+  margin-right : 25px;
+}
+
+#multiPlayer{
+  margin-left: 25px;
 }
 
 #msg {
@@ -116,4 +126,13 @@ body {
   #msg {
       font-size: 3vmin;
   }
+}
+
+.multiplayer-modes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
 }

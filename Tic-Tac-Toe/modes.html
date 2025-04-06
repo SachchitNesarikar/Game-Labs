@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic-Tac-Toe Game</title>
-    <link rel="stylesheet" href="styles.css"/>
+    <title>Tic-Tac-Toe Modes</title>
+    <link rel="stylesheet" href="modes.css"/>
 </head>
 <body>
     <div class="gg">
-        <p id="msg"> Let's Play!!</p>
-        <div class="mode-selection">
-            <button id="singlePlayer" onclick="singlePlayer()">Solo Mode</button>
-            <a href="modes.html"><button id="multiPlayer">Bot Mode</button></a>
+        <div class="multiplayer-modes">
+            <button id="easy">Easy</button>
+            <button id="med">Medium</button>
+            <button id="imp">Impossible</button>
         </div>
     </div>
     <main>
@@ -31,7 +31,8 @@
             </div>
         </div>
         <button id="reset">Reset Game</button>
+        <a href="index.html"><button id="reload">Back to Home</button></a>
     </main>
-    <script src="script.js"></script>
+    <script src="modes.js"></script>
 </body>
 </html>

@@ -6,8 +6,12 @@ let msg = document.querySelector("#msg");
 
 let O = true;
 let cnt = 0;
+let isSinglePlayer = false;
 
-const win = [[0, 1, 2], [0, 3, 6],[0, 4, 8], [1, 4, 7], [2, 5, 8], [2, 4, 6], [3, 4, 5], [6, 7, 8]];
+const win = [
+  [0, 1, 2], [0, 3, 6], [0, 4, 8], [1, 4, 7], 
+  [2, 5, 8], [2, 4, 6], [3, 4, 5], [6, 7, 8]
+];
 
 const resetGame = () => {
   O = true;
@@ -16,8 +20,16 @@ const resetGame = () => {
   gg.classList.add("hide");
 };
 
+const singlePlayer = () => {
+  isSinglePlayer = true;
+  resetGame();
+  console.log("Single Player Mode activated! You play both O and X.");
+};
+
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
+    if (box.innerText !== "") return;  // Prevents clicking on an already filled box
+
     if (O) {
       box.innerText = "O";
       O = false;
@@ -25,9 +37,8 @@ boxes.forEach((box) => {
       box.innerText = "X";
       O = true;
     }
-    box.disabled = true;
+    
     cnt++;
-
     let isWinner = check();
 
     if (cnt === 9 && !isWinner) {
@@ -63,17 +74,14 @@ const show = (winner) => {
 
 const check = () => {
   for (let pattern of win) {
-    let p1 = boxes[pattern[0]].innerText;
-    let p2 = boxes[pattern[1]].innerText;
-    let p3 = boxes[pattern[2]].innerText;
-
-    if (p1 != "" && p2 != "" && p3 != "") {
-      if (p1 === p2 && p2 === p3) {
-        show(p1);
-        return true;
-      }
+    let [p1, p2, p3] = pattern.map(index => boxes[index].innerText);
+    
+    if (p1 && p1 === p2 && p2 === p3) {
+      show(p1);
+      return true;
     }
   }
+  return false;
 };
 
 newGame.addEventListener("click", resetGame);
