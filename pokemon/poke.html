@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokemon Guesser</title>
+  <link rel="stylesheet" href="poke.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <h1>Who's That Pokemon?</h1>
+    <div class="card">
+      <div class="image-container">
+        <img id="pokemonImage" src="" alt="#" />
+        <div class="loader" id="loader"></div>
+      </div>
+      <input type="text" id="guessInput" placeholder="Type your guess..." aria-label="Pokémon guess input" />
+      <button onclick="checkGuess()">Guess</button>
+      <p id="result" class="result"></p>
+      <p id="hint" class="hint"></p>
+      <button class="next" onclick="loadPokemon()">Next Pokémon</button>
+    </div>
+  </div>
+  <script src="poke.js"></script>
+</body>
+</html>

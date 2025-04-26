@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #ff1e56, #3b5998, #00ddeb);
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    padding: 20px;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in;
+  }
+  
+  .card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  .image-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+  
+  #pokemonImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(0);
+    transition: filter 0.5s ease, transform 0.3s ease;
+  }
+  
+  #pokemonImage.revealed {
+    filter: brightness(1);
+    transform: scale(1.1);
+  }
+  
+  .loader {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 4px solid #ffcc00;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    color: #333;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  input:focus {
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+  }
+  
+  button {
+    padding: 12px 24px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 12px;
+    background: #ffcc00;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+    background: #ffaa00;
+    transform: translateY(-2px);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  .next {
+    background: #00e1ff;
+  }
+  
+  .next:hover {
+    background: #00c0d9;
+  }
+  
+  .result {
+    margin: 15px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    min-height: 24px;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .hint {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #e0e0e0;
+    margin-bottom: 10px;
+    min-height: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .hint.active {
+    opacity: 1;
+  }
+  
+  footer {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #ccc;
+  }
+  
+  footer a {
+    color: #ffcc00;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  
+  @media (max-width: 400px) {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .card {
+      padding: 20px;
+    }
+    
+    .image-container {
+      width: 120px;
+      height: 120px;
+    }
+  }
