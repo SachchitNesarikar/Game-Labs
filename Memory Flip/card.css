@@ -107,3 +107,10 @@
     font-size: 1.8em;
     margin: 0.6em 0 1em 0;
   }
+  .card-after img {
+    width: 100%; /* Ensures the image spans the card width */
+    height: 100%; /* Ensures the image spans the card height */
+    object-fit: cover; /* Maintains aspect ratio and fills the container */
+    border-radius: 5px; /* Matches the card border style */
+}
+

@@ -3,6 +3,25 @@ const message = document.getElementById('msg');
 const playerScore = document.getElementById('user-score');
 const computerScore = document.getElementById('comp-score');
 
+let targetPoints = 3;
+const startButton = document.getElementById('start-game');
+const targetInput = document.getElementById('target');
+
+startButton.addEventListener('click', () => {
+    targetPoints = parseInt(targetInput.value);
+    if (!targetPoints || targetPoints <= 0) {
+        alert('Please enter a valid target score!');
+        return;
+    }
+    document.getElementById('target-prompt').style.display = 'none';
+    document.getElementById('target-display').textContent = targetPoints;
+    message.textContent = 'Game started! Play your move.';
+    playerPoints = 0;
+    computerPoints = 0;
+    playerScore.textContent = playerPoints;
+    computerScore.textContent = computerPoints;
+});
+
 let playerPoints = 0;
 let computerPoints = 0;
 
@@ -50,6 +69,12 @@ function displayMessage(winner, playerSelection, computerSelection) {
     } else {
         message.textContent = `You lose! ${capitalize(computerSelection)} beats ${playerSelection}.`;
     }
+
+    if (playerPoints === targetPoints || computerPoints === targetPoints) {
+        const ultimateWinner = playerPoints === targetPoints ? 'Player' : 'Computer';
+        alert(`Game Over! ${ultimateWinner} is the ultimate winner!`);
+        gameReset();
+    }
 }
 
 const resetButton = document.getElementById('reset');
@@ -84,5 +109,13 @@ function generateRandomElements() {
     };
 };
    
-  
+function gameReset() {
+    playerPoints = 0;
+    computerPoints = 0;
+    playerScore.textContent = playerPoints;
+    computerScore.textContent = computerPoints;
+    targetPoints = 0;
+    document.getElementById('target-prompt').style.display = 'block';
+    message.textContent = 'Set a target to play!';
+}
   

@@ -140,3 +140,77 @@ body {
     }
   }
 
+#target-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px auto;
+  padding: 20px;
+  width: 300px;
+  border: 2px solid #4CAF50;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#target-prompt label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #4CAF50
+}
+
+#target-prompt input[type="number"] {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+#target-prompt input[type="number"]:focus {
+  border-color: #ff00ff;
+}
+
+#target-prompt button {
+  width: 85%;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: rgb(23, 23, 23);
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+#target-prompt button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+#target-prompt button:active {
+  background-color: #388E3C;
+  transform: scale(0.95);
+}
+
+@media (max-width: 600px) {
+  #target-prompt {
+      width: 90%;
+      padding: 15px;
+  }
+
+  #target-prompt label {
+      font-size: 16px;
+  }
+
+  #target-prompt input[type="number"],
+  #target-prompt button {
+      font-size: 14px;
+  }
+}

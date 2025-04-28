@@ -186,3 +186,13 @@
       height: 120px;
     }
   }
+
+  #pokemonImage {
+    transition: filter 2s ease-out, transform 2s ease-out;
+  }
+  
+  #pokemonImage.reveal-animation {
+    transform: scale(1.1); /* Slight zoom for dramatic effect */
+    filter: brightness(1); /* Reveal brightness */
+  }
+  

@@ -1,6 +1,7 @@
 let currentPokemon = null;
 let pokemonData = null;
 let wrongAttempts = 0;
+const maxAttempts = 5; // Define maximum allowed attempts
 
 function loadPokemon() {
   const id = Math.floor(Math.random() * 151) + 1;
@@ -34,14 +35,18 @@ function checkGuess() {
     result.textContent = `✅ Correct! It's ${currentPokemon.toUpperCase()}!`;
     img.style.filter = "brightness(1)";
     img.classList.add("revealed");
-    document.getElementById("correctSound").play();
     hintBox.textContent = "";
-    hintBox.classList.remove("active"); 
+    hintBox.classList.remove("active");
   } else {
-    result.textContent = `❌ Nope! Try again.`;
-    document.getElementById("wrongSound").play();
     wrongAttempts++;
+    const remainingMoves = maxAttempts - wrongAttempts; // Calculate remaining moves
+    result.textContent = `❌ Nope! Try again. ${remainingMoves} move(s) left!`;
     giveHint();
+
+    if (wrongAttempts >= maxAttempts) {
+      result.textContent = `❗ Revealed! It's ${currentPokemon.toUpperCase()}!`;
+      revealPokemonWithAnimation();
+    }
   }
 }
 
@@ -63,6 +68,16 @@ function giveHint() {
   const hintBox = document.getElementById("hint");
   hintBox.textContent = hint;
   hintBox.classList.add("active");
+}
+
+function revealPokemonWithAnimation() {
+  const img = document.getElementById("pokemonImage");
+  img.classList.add("reveal-animation");
+  img.style.filter = "brightness(1)";
+  img.classList.add("revealed");
+  const hintBox = document.getElementById("hint");
+  hintBox.textContent = "";
+  hintBox.classList.remove("active");
 }
 
 loadPokemon();

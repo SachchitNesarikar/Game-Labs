@@ -18,9 +18,7 @@ let movesL = lvls[currLvl].maxmMoves;
 
 window.onload = function () {
     let storedLvl = localStorage.getItem("highestLevel");
-    if (storedLvl) {
-        currLvl = parseInt(storedLvl) - 1;
-    }
+    currlvl = 1;
 
     start();
     updateStatus();
@@ -159,12 +157,20 @@ function generate() {
 }
 
 function updateStatus() {
-    document.getElementById("lvl").innerText = "Level: " + lvls[currLvl].lvl;
-    document.getElementById("score").innerText = "Score: " + score + " / " + lvls[currLvl].nxtlvl;
-    document.getElementById("moves").innerText = "Moves Left: " + movesL;
-    let highest = localStorage.getItem("highestLevel") || 1;
-    document.getElementById("highest").innerText = "Highest Level: " + highest;
+    const lvlElem = document.getElementById("lvl");
+    const scoreElem = document.getElementById("score");
+    const movesElem = document.getElementById("moves");
+    const highestElem = document.getElementById("highest");
+
+    if (lvlElem) lvlElem.innerText = "Level: " + lvls[currLvl].lvl;
+    if (scoreElem) scoreElem.innerText = "Score: " + score + " / " + lvls[currLvl].nxtlvl;
+    if (movesElem) movesElem.innerText = "Moves Left: " + movesL;
+    if (highestElem) {
+        let highest = localStorage.getItem("highestLevel") || 1;
+        highestElem.innerText = "Highest Level: " + highest;
+    }
 }
+
 
 function nextLevel() {
     if (currLvl < lvls.length - 1) {
@@ -175,7 +181,6 @@ function nextLevel() {
             localStorage.setItem("highestLevel", currLvl + 1);
         }
 
-        movesL = lvls[currLvl].maxmMoves;
         score = 0;
         board = [];
         document.getElementById("board").innerHTML = "";
@@ -190,9 +195,10 @@ function checkLevelStatus() {
     if (score >= lvls[currLvl].nxtlvl) {
         showMessage("Level " + lvls[currLvl].lvl + " cleared!");
         nextLevel();
-    } else if (movesL <= 0) {
+    } 
+    else if (movesL <= 0) {
         showMessage("Game Over! You failed Level " + lvls[currLvl].lvl);
-        location.reload();
+        let highest = localStorage.getItem("highestLevel") || 1;
     }
 }
 
@@ -205,3 +211,5 @@ function showMessage(text, callback) {
         if (callback) callback();
     }, 2000);
 }
+
+document.getElementById("highest").innerText = "Highest Score: " + highestScore;
