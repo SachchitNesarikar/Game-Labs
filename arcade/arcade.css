@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+body {
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #0f0f0f);
+    color: #fff;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+.featured-box {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.featured-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+.featured-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 80%;
+}
+.featured-text h3 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+.featured-text p {
+    font-size: 16px;
+    color: #ddd;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+.grid-item {
+    background-color: #1E1E1E;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    height: auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+
+.grid-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+.genre-image {
+    width: 100%;
+    height: auto; 
+    object-fit: contain; 
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background-color: #000; 
+    transition: transform 0.4s ease;
+}
+.grid-item:hover .genre-image {
+    transform: scale(1.03);
+}
+.grid-item h3 {
+    font-size: 1.3em;
+    margin: 5px 0;
+}
+.grid-item p {
+    font-size: 0.95em;
+    color: #ccc;
+}
+.chess { border-left: 5px solid #FF5733; }
+.candy { border-left: 5px solid #FFD700; }
+.memory { border-left: 5px solid #4CAF50; }
+.black { border-left: 5px solid #1E90FF; }
+
+
+@media (max-width: 768px) {
+    .featured-text h3 {
+        font-size: 20px;
+    }
+
+    .featured-text p {
+        font-size: 14px;
+    }
+
+    .grid-item h3 {
+        font-size: 18px;
+    }
+
+    .grid-item p {
+        font-size: 14px;
+    }
+
+    .genre-image {
+        height: auto;
+    }
+}
